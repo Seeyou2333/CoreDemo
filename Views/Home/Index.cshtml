@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    @*<link rel="stylesheet" href="//static.360buyimg.com/finance/crowdfunding/index/3.0.0/css/index.css">
+        <link rel="stylesheet" href="//static.360buyimg.com/finance/crowdfunding/index/3.0.0/css/common.css">*@
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .topdata {
+            height: 130px;
+            background-color: #fff
+        }
+
+        .show-list {
+            padding-top: 40px;
+            list-style: none;
+            background-color: #fff;
+            height: 130px;
+        }
+
+        .show-number .show-list li {
+            padding-right: 85px;
+            height: 65px;
+            float: left;
+            text-align: right;
+        }
+
+        .show-number .show-list .number {
+            font-size: 36px;
+            line-height: 32px;
+            font-family: Arial;
+            color: #323232;
+        }
+
+        .show-number .show-list .tag {
+            height: 16px;
+            color: #a5a5a5;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        .popular {
+            height: 320px;
+            margin-top: 50px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<div class="text-center">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- 指示符 -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- 轮播图片 -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
+            </div>
+            <div class="carousel-item">
+                <img src="https://static.runoob.com/images/mix/img_nature_wide.jpg">
+            </div>
+            <div class="carousel-item">
+                <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
+            </div>
+        </div>
+
+        <!-- 左右切换按钮 -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+    <div class="show-number">
+        <ul class="show-list">
+            <li>
+                <div class="number">719142<span>万</span></div>
+                <div class="tag">
+                    <span>累计支持金额</span><span class="micon"></span>
+                </div>
+            </li>
+            <li>
+                <div class="number">12053<span>万</span></div>
+                <div class="tag">
+                    <span>单项最高筹集金额</span><span class="micon"></span>
+                </div>
+            </li>
+            <li class="bg-none">
+                <div class="number">37.4<span>万</span></div>
+                <div class="tag">
+                    <span>单项最高支持人数</span><span class="picon"></span>
+                </div>
+            </li>
+            <li>
+                <div style="padding-left: 35px;">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="请输入关键词" id="Keyword" name="keyword">
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="button">Go!</button>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="popular">
+    <h3 style="font-weight: 600;"><i class="green-line"></i>热门推荐</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <img style="width:255px;height:270px;" src="//img13.360buyimg.com/cf/jfs/t1/71820/20/12469/139543/5d9db8d8E59996b3d/dda3e102cacfd951.jpg!q80" alt="">
+        </div>
+        <div class="col-sm-3">
+            <img style="width:255px;height:270px;" src="//img12.360buyimg.com/cf/jfs/t1/62719/40/11292/112919/5d8b34f1E266b0e25/8a3ccda5ee432012.jpg!q80" alt="">
+        </div>
+        <div class="col-sm-3">
+            <img style="width:255px;height:270px;" src="//img20.360buyimg.com/cf/jfs/t1/77762/36/10690/132122/5d7f7116E8c642051/f9673f281627d9cc.jpg!q80" alt="">
+        </div>
+        <div class="col-sm-3">
+            <img style="width:255px;height:270px;" src="//img11.360buyimg.com/cf/jfs/t1/45746/39/11981/148885/5d8ed7e7Eee47802e/835c6d2eb242ba86.jpg!q80" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="popular">
+    <h3 style="font-weight: 600;"><i class="green-line"></i>热门推荐</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <img style="width:255px;height:270px;" src="//img13.360buyimg.com/cf/jfs/t1/71820/20/12469/139543/5d9db8d8E59996b3d/dda3e102cacfd951.jpg!q80" alt="">
+        </div>
+        <div class="col-sm-3">
+            <img style="width:255px;height:270px;" src="//img12.360buyimg.com/cf/jfs/t1/62719/40/11292/112919/5d8b34f1E266b0e25/8a3ccda5ee432012.jpg!q80" alt="">
+        </div>
+        <div class="col-sm-3">
+            <img style="width:255px;height:270px;" src="//img20.360buyimg.com/cf/jfs/t1/77762/36/10690/132122/5d7f7116E8c642051/f9673f281627d9cc.jpg!q80" alt="">
+        </div>
+        <div class="col-sm-3">
+            <img style="width:255px;height:270px;" src="//img11.360buyimg.com/cf/jfs/t1/45746/39/11981/148885/5d8ed7e7Eee47802e/835c6d2eb242ba86.jpg!q80" alt="">
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CoreDemo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        /*.container {
+            max-width: 68%;
+        }*/
+        body {
+            background-color:#f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CoreDemo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link text-dark" style="" id="loginview">Account</a>
+                        </li>*@
+                    </ul>
+                </div>
+              
+                    <a class="nav-link text-dark" style="float:right" id="loginview">Account</a>
+             
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+    <!-- Modal -->
+    @*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">欢迎登陆</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" style="padding-left:65px;">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">登陆名</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="登陆名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> 记住密码
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="alert alert-danger hide" role="alert">错误</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" id="login" class="btn btn-primary">登陆</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <footer class="border-top footer text-muted" style="background-color:#fff">
+        <div class="container">
+            &copy; 2019 - CoreDemo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/layer/layer.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="false"></script>
+    <script>
+        $('#loginview').click(function () {
+            layer.open({
+                type: 2,
+                title: '欢迎登陆',
+                shadeClose: true,
+                shade: 0.8,
+                scrolling: false,
+                area: ['390px', '300px'],
+                content: ['/Account/LoginView' , 'no'], //iframe的url
+                btn: ['登录', '取消'], //按钮
+                btn1: function (index, layero) {
+                        var w = $(layero).find("iframe")[0]
+                            .contentWindow; //通过该对象可以获取iframe中的变量，调用iframe中的方法
+                    var data = w.login();
+
+                    if (data == "1") {
+                        layer.closeAll('iframe')
+                        layer.msg(result);
+
+                    }
+                        
+                }
+            });
+        })
+
+            //$('#login').click(function () {
+            //    var mydata = {
+            //        userName: $('#inputEmail').val(),
+            //        password: $('#inputPassword').val()
+            //    };
+            //    $.ajax(
+            //        {
+            //            url: '/Account/Register?userName=' + $('#inputEmail').val() + '&password=' + $('#inputPassword').val(),     // 请求地址, 就是你的控制器, 如 test.com/home/index/index
+            //            //data: JSON.stringify(mydata),   // 需要传送的参数
+            //            type: 'POST',   // 请求方式
+            //            dataType: 'json', // 返回数据的格式, 通常为JSON
+            //            contentType: 'application/json',
+            //            success: function (result) {
+            //                window.location.href = result.NextUrl;
+            //                msg = result.Msg;
+            //                console.log(result); // 请求成功后的回调函数, result 为响应内容
+            //            },
+            //            error: function (a, b, c) {
+            //                console.log(a.responseJSON[0].code + ':' + a.responseJSON[0].description);
+            //                // 请求失败时的回调函数
+            //            }
+            //        }
+            //    );
+            //})
+            //iframe层
+
+
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
