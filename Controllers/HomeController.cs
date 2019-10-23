@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CoreDemo.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace CoreDemo.Controllers
 {
     public class HomeController : Controller
@@ -23,7 +23,7 @@ namespace CoreDemo.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

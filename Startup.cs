@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CoreDemo.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,13 +27,11 @@ namespace CoreDemo
             services.AddDbContext<SqlServerDbcontext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefultDatabase"))
             );
+             
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<SqlServerDbcontext>()
+                .AddDefaultTokenProviders();
 
-            services.AddIdentityCore<IdentityUser>()
-                .AddEntityFrameworkStores<SqlServerDbcontext>();
-
-            //services.AddDefaultIdentity<IdentityUser>()
-            //    .AddDefaultUI(UIFramework.Bootstrap4)
-            //    .AddEntityFrameworkStores<SqlServerDbcontext>();
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
@@ -59,6 +53,16 @@ namespace CoreDemo
                 options.User.RequireUniqueEmail = false;
             });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+                options.LoginPath = "/Home/Index";
+                //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
 
         }
 
@@ -80,6 +84,9 @@ namespace CoreDemo
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
+            // uncomment, if you want to add MVC
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,6 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CoreDemo</title>
@@ -11,7 +13,7 @@
             max-width: 68%;
         }*/
         body {
-            background-color:#f9f9f9;
+            background-color: #f9f9f9;
         }
     </style>
 </head>
@@ -33,13 +35,31 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-dark" style="" id="loginview">Account</a>
-                        </li>*@
+                                <a class="nav-link text-dark" style="" id="loginview">Account</a>
+                            </li>*@
                     </ul>
                 </div>
-              
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form asp-action="Logout" asp-controller="Account" method="post">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">@User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                            </li>
+                        </ul>
+                    </form>
+
+                }
+                else
+                {
                     <a class="nav-link text-dark" style="float:right" id="loginview">Account</a>
-             
+                }
+
+
+
             </div>
         </nav>
     </header>
@@ -106,7 +126,12 @@
 
     <script src="~/js/site.js" asp-append-version="false"></script>
     <script>
+
         $('#loginview').click(function () {
+            loginopen();
+        })
+
+        function loginopen() {
             layer.open({
                 type: 2,
                 title: '欢迎登陆',
@@ -114,48 +139,47 @@
                 shade: 0.8,
                 scrolling: false,
                 area: ['390px', '300px'],
-                content: ['/Account/LoginView' , 'no'], //iframe的url
+                content: ['/Account/LoginView', 'no'], //iframe的url
                 btn: ['登录', '取消'], //按钮
                 btn1: function (index, layero) {
-                        var w = $(layero).find("iframe")[0]
-                            .contentWindow; //通过该对象可以获取iframe中的变量，调用iframe中的方法
-                    var data = w.login();
+                    var w = $(layero).find("iframe")[0]
+                        .contentWindow; //通过该对象可以获取iframe中的变量，调用iframe中的方法
+                    var data = w.formsubmit();
 
                     if (data == "1") {
                         layer.closeAll('iframe')
                         layer.msg(result);
 
                     }
-                        
+
                 }
             });
-        })
-
-            //$('#login').click(function () {
-            //    var mydata = {
-            //        userName: $('#inputEmail').val(),
-            //        password: $('#inputPassword').val()
-            //    };
-            //    $.ajax(
-            //        {
-            //            url: '/Account/Register?userName=' + $('#inputEmail').val() + '&password=' + $('#inputPassword').val(),     // 请求地址, 就是你的控制器, 如 test.com/home/index/index
-            //            //data: JSON.stringify(mydata),   // 需要传送的参数
-            //            type: 'POST',   // 请求方式
-            //            dataType: 'json', // 返回数据的格式, 通常为JSON
-            //            contentType: 'application/json',
-            //            success: function (result) {
-            //                window.location.href = result.NextUrl;
-            //                msg = result.Msg;
-            //                console.log(result); // 请求成功后的回调函数, result 为响应内容
-            //            },
-            //            error: function (a, b, c) {
-            //                console.log(a.responseJSON[0].code + ':' + a.responseJSON[0].description);
-            //                // 请求失败时的回调函数
-            //            }
-            //        }
-            //    );
-            //})
-            //iframe层
+        }
+                    //$('#login').click(function () {
+                    //    var mydata = {
+                    //        userName: $('#inputEmail').val(),
+                    //        password: $('#inputPassword').val()
+                    //    };
+                    //    $.ajax(
+                    //        {
+                    //            url: '/Account/Register?userName=' + $('#inputEmail').val() + '&password=' + $('#inputPassword').val(),     // 请求地址, 就是你的控制器, 如 test.com/home/index/index
+                    //            //data: JSON.stringify(mydata),   // 需要传送的参数
+                    //            type: 'POST',   // 请求方式
+                    //            dataType: 'json', // 返回数据的格式, 通常为JSON
+                    //            contentType: 'application/json',
+                    //            success: function (result) {
+                    //                window.location.href = result.NextUrl;
+                    //                msg = result.Msg;
+                    //                console.log(result); // 请求成功后的回调函数, result 为响应内容
+                    //            },
+                    //            error: function (a, b, c) {
+                    //                console.log(a.responseJSON[0].code + ':' + a.responseJSON[0].description);
+                    //                // 请求失败时的回调函数
+                    //            }
+                    //        }
+                    //    );
+                    //})
+                    //iframe层
 
 
     </script>

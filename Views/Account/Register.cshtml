@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = null;
+    ViewData["Title"] = "Register";
+}
+@using CoreDemo.Models.Account;
+@model RegisterViewModel;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RegisterView</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/layer/layer.js"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Top content -->
+    <div class="top-content" style="padding-top: 5%;">
+
+        <div class="inner-bg">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-6 book" style="border-right:1px solid #000;margin-right: 60px;">
+                        <img src="~/img/iphone.png" alt="">
+                    </div>
+                    <div class="col-sm-5 form-box" style="padding-top: 13%;">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>立 即 注 册</h3>
+                                <p>请填写以下信息    即刻加入</p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <form role="form"  method="post" >
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-first-name">邮箱</label>
+                                    <input type="Email" name="Email" placeholder="邮箱..." class=" form-control" id="form-email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-last-name">密码</label>
+                                    <input type="text" name="Password" placeholder="密码..." class="form-control" id="form-password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-email">确认密码</label>
+                                    <input type="text" name="ConfirmedPassword" placeholder="确认密码..." class=" form-control" id="form-confirmedpassword">
+                                </div>
+                                <button type="submit" class="btn btn-info">点击注册</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        //function regist() {
+        //    var mydata = {
+        //        userName: $('#inputEmail').val(),
+        //        password: $('#inputPassword').val()
+        //    };
+        //    var status = 0;
+        //    $.ajax(
+        //        {
+        //            url: '/Account/Register?userName=' + $('#userName').val() + '&password=' + $('#passWord').val(),     // 请求地址, 就是你的控制器, 如 test.com/home/index/index
+        //            //data: JSON.stringify(mydata),   // 需要传送的参数
+        //            type: 'POST',   // 请求方式
+        //            dataType: 'json', // 返回数据的格式, 通常为JSON
+        //            contentType: 'application/json',
+        //            async: false,//取消异步请求
+        //            success: function (result) {
+        //                debugger
+        //                status = "1";
+        //            },
+        //            error: function (a, b, c) {
+        //                layer.msg(a.responseJSON[0].code + ':' + a.responseJSON[0].description);
+        //                // 请求失败时的回调函数
+        //            }
+        //        }
+        //    );
+        //    return status;
+        //};
+    </script>
+
+
+
+</body>
+</html>
