@@ -8,6 +8,11 @@
     <title>@ViewData["Title"] - CoreDemo</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/layer/layer.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="false"></script>
     <style>
         /*.container {
             max-width: 68%;
@@ -120,11 +125,7 @@
             &copy; 2019 - CoreDemo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/layer/layer.js"></script>
-
-    <script src="~/js/site.js" asp-append-version="false"></script>
+  
     <script>
 
         $('#loginview').click(function () {
@@ -144,17 +145,45 @@
                 btn1: function (index, layero) {
                     var w = $(layero).find("iframe")[0]
                         .contentWindow; //通过该对象可以获取iframe中的变量，调用iframe中的方法
-                    var data = w.formsubmit();
+                    var data = w.login();
 
                     if (data == "1") {
                         layer.closeAll('iframe')
-                        layer.msg(result);
-
+                        layer.msg("登陆成功");
                     }
+                    sleep(1000);
+                    window.location.reload(); 
+
 
                 }
             });
         }
+
+        //$('#Privacy').click(function () {
+        //    $.ajax({
+        //        url: '/Account/Register?userName=' + $('#inputEmail').val() + '&password=' + $('#inputPassword').val(),     // 请求地址, 就是你的控制器, 如 test.com/home/index/index
+        //            //data: JSON.stringify(mydata),   // 需要传送的参数
+        //        type: 'POST',   // 请求方式
+        //        dataType: 'json', // 返回数据的格式, 通常为JSON
+        //        contentType: 'application/json',
+        //        success: function (result) {
+        //            window.location.href = result.NextUrl;
+        //            msg = result.Msg;
+        //            console.log(result); // 请求成功后的回调函数, result 为响应内容
+        //        },
+        //        error: function (a, b, c) {
+        //            console.log(a.responseJSON[0].code + ':' + a.responseJSON[0].description);
+        //            // 请求失败时的回调函数
+        //        }
+        //    });
+        //})
+
+        function sleep(milliSeconds) {
+            var startTime = new Date().getTime();
+            while (new Date().getTime() < startTime + milliSeconds) {
+                console.log(new Date().getTime());
+            }//暂停一段时间 10000=1S。
+         }
                     //$('#login').click(function () {
                     //    var mydata = {
                     //        userName: $('#inputEmail').val(),

@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     string [] srcs = { "//img13.360buyimg.com/cf/jfs/t1/71820/20/12469/139543/5d9db8d8E59996b3d/dda3e102cacfd951.jpg!q80", "//img12.360buyimg.com/cf/jfs/t1/62719/40/11292/112919/5d8b34f1E266b0e25/8a3ccda5ee432012.jpg!q80", "//img20.360buyimg.com/cf/jfs/t1/77762/36/10690/132122/5d7f7116E8c642051/f9673f281627d9cc.jpg!q80", "//img11.360buyimg.com/cf/jfs/t1/45746/39/11981/148885/5d8ed7e7Eee47802e/835c6d2eb242ba86.jpg!q80" };
-
+    
+    bool result = string.IsNullOrEmpty(ViewData["ReturnUrl"]?.ToString());
 }
 <head>
     @*<link rel="stylesheet" href="//static.360buyimg.com/finance/crowdfunding/index/3.0.0/css/index.css">
@@ -52,6 +53,13 @@
             background-color: #fff;
         }
     </style>
+    @if (!result&&!User.Identity.IsAuthenticated) {
+        <script>
+            $(document).ready(function () {
+                loginopen();
+            });
+        </script>
+    }
 </head>
 <div class="text-center">
     <div id="demo" class="carousel slide" data-ride="carousel">
@@ -122,12 +130,12 @@
 <div class="popular">
     <h3 style="font-weight: 600;"><i class="green-line"></i>热门推荐</h3>
     <div class="row">
-        @foreach (var item in srcs)
+        @foreach(var item in srcs)
         {
             <div class="col-sm-3">
                 <img style="width:255px;height:270px;" src=@item alt="">
             </div>
-        }
+        };
 
         @*<div class="col-sm-3">
             <img style="width:255px;height:270px;" src="//img12.360buyimg.com/cf/jfs/t1/62719/40/11292/112919/5d8b34f1E266b0e25/8a3ccda5ee432012.jpg!q80" alt="">

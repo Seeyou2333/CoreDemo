@@ -35,10 +35,10 @@ namespace CoreDemo
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
+                options.Password.RequireDigit = true;   //包含数字
+                options.Password.RequireLowercase = false;//小写
+                options.Password.RequireNonAlphanumeric = false;//非字母数字
+                options.Password.RequireUppercase = false;//大写
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
 

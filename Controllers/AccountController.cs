@@ -41,45 +41,32 @@ namespace CoreDemo.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View();
+            return View(identityResult);
         }
         public IActionResult LoginView()
         {
             return View();
         }
-        //登陆
-        public IActionResult MakeLogin()
-        {
-            var claims = new List<Claim>(){
-                new Claim(ClaimTypes.Name,"wyt"),
-                new Claim(ClaimTypes.Role,"admin")
-            };
 
-            var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
-
-            return RedirectToAction("Index", "Home");
-        }
         [HttpPost]
-        public async Task<IActionResult> Login(RegisterViewModel loginViewModel)
+        public async Task<IActionResult> Login(string email,string password ,bool rember)
         {
-            //var result = await _signInManager.PasswordSignInAsync(loginViewModel.Email,
-            //               loginViewModel.Password, true, lockoutOnFailure: true);
+            var result = await _signInManager.PasswordSignInAsync(email,
+                         password, rember, lockoutOnFailure: true);
 
-            //if (!result.Succeeded)
-            //{
-            //    return LocalRedirect("");
-            //}
-            var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
-            if (user == null)
+            if (!result.Succeeded)
             {
-                //异常先不写，后期统一收集
+                return LocalRedirect("");
             }
+            //var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
+            //if (user == null)
+            //{
+            //    //异常先不写，后期统一收集
+            //}
             //账号密码先不做验证，需要可以自己写
-            await _signInManager.SignInAsync(user, new AuthenticationProperties { IsPersistent = true });
+            //await _signInManager.SignInAsync(user, new AuthenticationProperties { IsPersistent = true });
 
-            return RedirectToAction("Index", "Home");
+            return Ok();
         }
 
         //登出

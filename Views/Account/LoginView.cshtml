@@ -54,6 +54,33 @@
         function formsubmit() {
             $("form").submit();
         };
+
+              function login() {
+                var mydata = {
+                    userName: $('#inputEmail').val(),
+                    password: $('#inputPassword').val()
+                };
+                var status = 0;
+                $.ajax(
+                    {
+                        url: '/Account/Login?email=' + $('#Email').val() + '&password=' + $('#passWord').val()+'&rember='+true,     // 请求地址, 就是你的控制器, 如 test.com/home/index/index
+                        //data: JSON.stringify(mydata),   // 需要传送的参数
+                        type: 'POST',   // 请求方式
+                        dataType: 'text', // 返回数据的格式, 通常为JSON
+                        contentType: 'application/json',
+                        async:false,//取消异步请求
+                        success: function (result) {
+                            debugger
+                            status = "1";
+                        },
+                        error: function (a, b, c) {
+                            layer.msg(a.responseJSON[0].code + ':' + a.responseJSON[0].description);
+                            // 请求失败时的回调函数
+                        }
+                    }
+                 );
+            return status;
+        };
     </script>
 </body>
 </html>

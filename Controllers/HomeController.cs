@@ -19,8 +19,13 @@ namespace CoreDemo.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+      
+        public IActionResult Index(string returnUrl)
         {
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                ViewData["ReturnUrl"] = returnUrl;
+            }
             return View();
         }
         [Authorize]
